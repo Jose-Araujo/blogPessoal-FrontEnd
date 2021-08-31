@@ -7,11 +7,11 @@
     <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
         <ul class="navbar-nav mr-auto d-flex align-items-center">
             <li class="nav-item active">
-                <img src="https://img.elo7.com.br/product/zoom/256E988/quadro-wubba-lubba-dub-dub-por-rick-and-morty-quadro-tematico.jpg" alt="Imagem do usuário" 
+                <img src="{{foto}}" alt="Imagem do usuário" 
                     class="img-fluid rounded-circle wh-50">
             </li>
             <li class="nav-item pl-3">
-                <p class="m-0 font-weight-bold text-white fs-16">Nome do usuário</p>
+                <p class="m-0 font-weight-bold text-white fs-16">Olá, {{nome}}</p>
             </li>
             <li class="nav-item pl-3">
                 <a href="">
@@ -21,7 +21,7 @@
         </ul>
         <ul class="navbar-nav ml-auto d-flex align-items-center">
             <li class="nav-item pl-3">
-                <a class="m-0 font-weight-bold text-white fs-16">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                <a (click)='sair()' class="m-0 font-weight-bold text-white fs-16">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
             </li>
         </ul>
     </div>
