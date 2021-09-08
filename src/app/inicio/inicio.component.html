@@ -31,12 +31,13 @@
                 data-toggle="tab" href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens"
                 aria-selected="true">Todas as Postagens</a>
 
-            <a (click) = 'findByIdUser()' class="nav-item nav-link text-secondary font-weight-bold" id="nav-minhasPostagens-tab" data-toggle="tab"
-                href="#minhasPostagens" role="tab" aria-controls="nav-minhasPostagens" aria-selected="false">Minhas
+            <a (click)='findByIdUser()' class="nav-item nav-link text-secondary font-weight-bold"
+                id="nav-minhasPostagens-tab" data-toggle="tab" href="#minhasPostagens" role="tab"
+                aria-controls="nav-minhasPostagens" aria-selected="false">Minhas
                 Postagens</a>
 
             <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-postagemTema-tab" data-toggle="tab"
-                href="#postagemTema" role="tab" aria-controls="nav-postagemTema" aria-selected="false">Postegens por
+                href="#postagemTema" role="tab" aria-controls="nav-postagemTema" aria-selected="false">Postagens por
                 Tema</a>
         </div>
     </nav>
@@ -61,6 +62,7 @@
         </div>
 
         <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="nav-minhasPostagens-tab">
+           
             <div class="card-columns">
                 <div class="card text-center" *ngFor='let item of user.postagem'>
                     <div class="card-body">
@@ -69,13 +71,17 @@
                         <p class="card-text mt-3">{{item.texto}}</p>
                         <p class="card-text"><small class="text-muted">{{item.data | date: 'dd/MM/yyyy'}} às {{item.data
                                 | date: 'HH:mm'}} </small></p>
+
+                        <a [routerLink]="['/postagem-edit', item.id]" class="text-info mr-3" href="">Editar</a>
+                        <a [routerLink]="['/postagem-delete', item.id]" class="text-danger" href="">Apagar</a>
                     </div>
                 </div>
             </div>
+        
         </div>
 
         <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="nav-postagemTema-tab">
-            <div class="card-columns" *ngFor = 'let tema of listaTemas'>
+            <div class="card-columns" *ngFor='let tema of listaTemas'>
                 <div class="card text-center" *ngFor='let item of tema.postagem'>
                     <div class="card-body">
                         <h5 class="card-title m-0">{{item.titulo}}</h5>
@@ -126,8 +132,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal"
-                    (click)='publicar()'>Publicar</button>
+                <button type="button" class="btn btn-success" (click)='publicar()' data-dismiss="modal">Publicar</button>
             </div>
         </div>
     </div>

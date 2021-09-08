@@ -30,9 +30,7 @@ export class InicioComponent implements OnInit {
     private postagemService: PostagemService,
     private temaService: TemaService,
     private authService: AuthService
-  ) { 
-    
-  }
+  ) { }
 
   ngOnInit(){
     if(environment.token == ''){

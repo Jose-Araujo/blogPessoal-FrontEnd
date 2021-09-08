@@ -43,7 +43,7 @@ export class CadastrarComponent implements OnInit {
    
     this.user.tipo = this.tipoUsuario
 
-    if(this.user.senha.length < 8){
+    if(this.user.senha.length < 4){
       alert('A senha deve conter no mínimo 8 dígitos.')
     }else if(this.user.senha != this.confirmarSenha){
       alert('As senhas informadas estão diferentes!')
