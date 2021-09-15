@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/User';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -19,7 +20,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -44,23 +46,23 @@ export class UserEditComponent implements OnInit {
 
   atualizar() {
     if (this.user.nome.length < 5) {
-      alert('O usuário deve conter no mínimo 8 caracteres.')
+      this.alertas.showAlertInfo('O usuário deve conter no mínimo 8 caracteres.')
     }
     if (this.user.usuario.indexOf('@') == -1 || this.user.usuario.indexOf('.') == -1) {
-      alert('O usuário deve ser um email (e.g. usuario@usuario.com)')
+      this.alertas.showAlertInfo('O usuário deve ser um email (e.g. usuario@usuario.com)')
     }
 
     this.user.tipo = this.tipoUsuario
 
     if (this.user.senha.length < 4) {
-      alert('A senha deve conter no mínimo 8 dígitos.')
+      this.alertas.showAlertInfo('A senha deve conter no mínimo 8 dígitos.')
     } else if (this.user.senha != this.confirmarSenha) {
-      alert('As senhas informadas estão diferentes!')
+      this.alertas.showAlertInfo('As senhas informadas estão diferentes!')
     } else {
       this.authService.alterar(this.user).subscribe((resp: User) => {
         this.user = resp
         this.router.navigate(['/inicio'])
-        alert('Usuário atualizado com sucesso, faça o login novamente.')
+        this.alertas.showAlertSuccess('Usuário atualizado com sucesso, faça o login novamente.')
         environment.token = ''
         environment.nome = ''
         environment.foto = ''
